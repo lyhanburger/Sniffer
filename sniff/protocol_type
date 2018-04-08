@@ -1,0 +1,19 @@
+0x0800   IP
+0x0806   ARP
+0x0808   Frame_Relay_ARP
+0x6559   Raw_Frame_Relay
+0x8035   DRARP/RARP
+0x80F3   AARP
+0x8100   EAPS
+0x8137   IPX
+0x814C   SNMP
+0x86DD   IPv6
+0x880B   PPP
+0x880C   GSMP
+0x8847   MPLS<unicast>
+0x8848   MPLS<multicast>
+0x8863   PPPPoE<Discovery Stage>
+0x8864   PPPoE<PPP Session Stage>
+0x88BB   LWAPP
+0x88CC   LLDP
+0x8E88   EAPOL
