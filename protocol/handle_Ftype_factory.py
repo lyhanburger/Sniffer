@@ -1,4 +1,6 @@
 from .handle_IP import IP
+from .handle_ARP import ARP
+
 class handle_Ftype_factory(object):
     """docstring for handle_Type_factory"""
     def __init__(self):
@@ -8,7 +10,7 @@ class handle_Ftype_factory(object):
         if ftype == "IP":
             return IP(other_data)
         elif ftype == "ARP":
-            pass
+            return ARP(other_data)
         elif ftype == "IPv6":
             pass
         elif ftype == "PPP":

@@ -1,3 +1,4 @@
-from .ICMP import ICMP
-from .TCP import TCP
-from .UDP import UDP
+from .ICMP import *
+from .TCP import * 
+from .UDP import *
+from .SCTP import *

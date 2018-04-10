@@ -1,7 +1,11 @@
 '''互联网控制消息协议'''
-from .static import ICMPTYPE
-from .logcmd import printWARN
+import sys
+sys.path.append("...")
+from common.static import ICMPTYPE
+from common.logcmd import printWARN
+
 import struct
+
 class ICMP(object):
     """docstring for ICMP"""
     def __init__(self, data):

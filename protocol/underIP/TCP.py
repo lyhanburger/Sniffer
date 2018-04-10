@@ -1,6 +1,9 @@
 import struct
 import re
-from .logcmd import printINFO
+import sys
+sys.path.append("...")
+from common.logcmd import printINFO
+
 define_FLAGS={0:'URG',1:'ACK',2:'PSH', 3:'RST', 4:'SYN', 5:'FIN'}
 class TCP(object):
     """docstring for TCP"""
@@ -20,6 +23,9 @@ class TCP(object):
             self.OPTION = None
             self.other_data = self.raw_data[20:]
 
+    def print_result(self):
+        print('TCP --- SRC_PORT: {}, DEST_PORT: {}'.format(self.SRC_PORT, self.DEST_PORT))
+        
     def __get_THL_R_FLAG(self, THL_R_FLAG):
         THL = THL_R_FLAG >> 12
         R = THL_R_FLAG >> 6 & 0x003F
@@ -59,6 +65,4 @@ class TCP(object):
             '''Other up procotol'''
             pass
 
-    def print_result(self):
-        print('SRC_PORT: {}, DEST_PORT: {}'.format(self.SRC_PORT, self.DEST_PORT))
-        
+    

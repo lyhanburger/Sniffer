@@ -5,12 +5,14 @@ class UDP(object):
     def __init__(self, arg):
         self.raw_data = arg
         self.__analysis()
-        
+
     def __analysis(self):
         '''Port number to identify sending and receiving application end-points on a host'''
         self.SRC_PORT, self.DEST_PORT, self.LEN, self.CHECKSUM,  = struct.unpack('H H H H', self.raw_data[:8])
         self.other_data = self.raw_data[8:]
        
+    def print_result(self):
+        print('UDP --- SRC_PORT: {}, DEST_PORT: {}'.format(self.SRC_PORT, self.DEST_PORT))
 
     def up_layer(self, PORT):
         if PORT == 20 or PORT == 21:
@@ -32,5 +34,4 @@ class UDP(object):
             '''Other up procotol'''
             pass
 
-    def print_result(self):
-        print('UDP --- SRC_PORT: {}, DEST_PORT: {}'.format(self.SRC_PORT, self.DEST_PORT))
+    

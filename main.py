@@ -1,7 +1,6 @@
 import pcap
-
-from protocol.handle_Ftype_factory import handle_Ftype_factory
-from ethFrame.logcmd import printINFO, printTEST
+from protocol import handle_Ftype_factory
+from common.logcmd import printINFO, printTEST
 from ethFrame.extra_Ethernet import extra_Ethernet
 
 # 以太网帧 工厂模式
