@@ -2,7 +2,7 @@ import struct
 import re
 import sys
 sys.path.append("...")
-from common.logcmd import printINFO
+from common.logcmd import printINFO, printWARN
 
 define_FLAGS={0:'URG',1:'ACK',2:'PSH', 3:'RST', 4:'SYN', 5:'FIN'}
 class TCP(object):
@@ -13,9 +13,8 @@ class TCP(object):
 
     def __analysis(self):
         '''Port number to identify sending and receiving application end-points on a host'''
-        self.SRC_PORT, self.DEST_PORT, self.SEQ, self.ACK, THL_R_FLAG, self.WIN_SIZE, self.CHECKSUM, self.URGENR_PTR = struct.unpack('H H I I H H H H', self.raw_data[:20])
+        self.SRC_PORT, self.DEST_PORT, self.SEQ, self.ACK, THL_R_FLAG, self.WIN_SIZE, self.CHECKSUM, self.URGENR_PTR = struct.unpack('! H H I I H H H H', self.raw_data[:20])
         self.THL, self.R, self.FLAG = self.__get_THL_R_FLAG(THL_R_FLAG)
-
         if self.THL > 5:
             self.OPTION = self.raw_data[20:24]
             self.other_data = self.raw_data[24:]

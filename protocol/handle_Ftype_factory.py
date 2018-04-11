@@ -1,6 +1,6 @@
 from .handle_IP import IP
 from .handle_ARP import ARP
-
+from .handle_IPv6 import IPv6
 class handle_Ftype_factory(object):
     """docstring for handle_Type_factory"""
     def __init__(self):
@@ -12,11 +12,11 @@ class handle_Ftype_factory(object):
         elif ftype == "ARP":
             return ARP(other_data)
         elif ftype == "IPv6":
-            pass
-        elif ftype == "PPP":
-            pass
-        elif ftype == "LLDP":
-            pass
+            return IPv6(other_data)
+        # elif ftype == "PPP":
+        #     pass
+        # elif ftype == "LLDP":
+        #     pass
         else:
             # 只识别不做分析
             pass

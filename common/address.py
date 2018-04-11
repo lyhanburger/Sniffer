@@ -8,3 +8,8 @@ def get_mac_addr(mac_raw):
     byte_str = map('{:02x}'.format, mac_raw)
     mac_addr = ':'.join(byte_str).upper()
     return mac_addr
+
+def get_IP6_addr(ip6_raw):
+    byte_str = map('{:x}'.format, ip6_raw)
+    Ip_addr = ':'.join(byte_str)
+    return Ip_addr

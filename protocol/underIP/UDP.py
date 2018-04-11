@@ -8,7 +8,7 @@ class UDP(object):
 
     def __analysis(self):
         '''Port number to identify sending and receiving application end-points on a host'''
-        self.SRC_PORT, self.DEST_PORT, self.LEN, self.CHECKSUM,  = struct.unpack('H H H H', self.raw_data[:8])
+        self.SRC_PORT, self.DEST_PORT, self.LEN, self.CHECKSUM,  = struct.unpack('! H H H H', self.raw_data[:8])
         self.other_data = self.raw_data[8:]
        
     def print_result(self):
