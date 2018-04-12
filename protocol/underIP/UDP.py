@@ -14,6 +14,14 @@ class UDP(object):
     def print_result(self):
         print('UDP --- SRC_PORT: {}, DEST_PORT: {}'.format(self.SRC_PORT, self.DEST_PORT))
 
+    def get_Info(self):
+        info = {}
+        info['SRC_PORT'] = '[16 bit]' + str(self.SRC_PORT)
+        info['DEST_PORT'] = '[16 bit]' + str(self.DEST_PORT)
+        info['length'] = '[16 bit]' + str(self.LEN)
+        info['checksum'] = '[16 bit]' + str(self.CHECKSUM)
+        return(info, 'UDP')
+
     def up_layer(self, PORT):
         if PORT == 20 or PORT == 21:
             '''FTP'''

@@ -35,6 +35,19 @@ class ARP(object):
         print('OPT: {}, SRC_MAC: {}, SRC_IP: {}, DEST_MAC: {}, DEST_IP: {}'.format(self.OPT, self.SRC_MAC, self.SRC_IP, self.DEST_MAC, self.DEST_IP))
     def deal_data(self):
         return None
+
+    def get_Info(self):
+        info = {}
+        info['hardware'] = '[16 bit]' + str(self.SHA)
+        info['procotol'] = '[16 bit]' + str(self.PROCOTOL)
+        info['mac_length'] = '[8 bit]' + str(self.LEN_MAC)
+        info['IP_length'] = '[8 bit]' + str(self.LEN_IP)
+        info['oprate'] = '[16 bit]' + str(self.OPT)
+        info['SRC_MAC'] = '[48 bit]' + str(self.SRC_MAC)
+        info['SRC_IP'] = '[32 bit]' + str(self.SRC_IP)
+        info['DEST_MAC'] = '[48 bit]' + str(self.DEST_MAC)
+        info['DEST_IP'] = '[32 bit]' + str(self.DEST_IP)
+        return(info, 'ARP')
         
 
 

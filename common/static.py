@@ -8,39 +8,39 @@ ICMPTYPE = {
     }
 }
 '''
-ICMPTYPE = pickle.load(open('_static/icmpType','rb'))
+ICMPTYPE = pickle.load(open('static/icmpType','rb'))
 
 '''
 IP_PROTOCOL={
     i(int): 'protocol(str)'
 }
 '''
-IP_PROTOCOL = pickle.load(open("_static/IPprotocol",'rb'))
+IP_PROTOCOL = pickle.load(open("static/IPprotocol",'rb'))
 
 '''
 FRAME_TYPE={
     i(int): 'frame_type(str)'
 }
 '''
-FRAME_TYPE = pickle.load(open("_static/FrameType", "rb"))
+FRAME_TYPE = pickle.load(open("static/FrameType", "rb"))
 
 '''
 ARP_OP={
     i(int): 'str'  
 }
 '''
-ARP_OP = pickle.load(open('_static/arp_op','rb'))
+ARP_OP = pickle.load(open('static/arp_op','rb'))
 
 '''
 ARP_HARDWARE={
     int: 'str'
 }
 '''
-ARP_HARDWARE = pickle.load(open('_static/arp_hardware','rb'))
+ARP_HARDWARE = pickle.load(open('static/arp_hardware','rb'))
 
 '''
 IPV6_ICMPTYPE ={
     int: str
 }
 '''
-IPV6_ICMPTYPE = pickle.load(open('_static/IPv6_IcmpType','rb'))
+IPV6_ICMPTYPE = pickle.load(open('static/IPv6_IcmpType','rb'))

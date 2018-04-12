@@ -25,6 +25,15 @@ class extra_Ethernet:
         self.src_mac = get_mac_addr(src)
         self.ftype = self.get_FrameType(ftype)
         self.other_data = self.raw_data[14:]
+
+    def get_Info(self):
+        info = {}
+        info['eth_dest_mac'] = '[48 bit]' + self.dest_mac
+        info['eth_src_mac'] = '[48 bit]' + self.src_mac
+        info['frame_type'] = '[16 bit]' + self.ftype
+        return info
+
+
     
    
 

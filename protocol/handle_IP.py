@@ -1,8 +1,9 @@
 import struct
 import sys
+from .underIP import *
 sys.path.append("..")
 from common import get_IP4_addr, IP_PROTOCOL
-from .underIP import *
+
 class IP(object):
     def __init__(self,other_data):
         self.raw_data = other_data
@@ -18,7 +19,7 @@ class IP(object):
             print("ERROR")
 
     def __analysis(self):
-        VER_IHL, DS_ECN, self.TOTALEN, self.IDENT, FLAG_OFFSET, self.TTL, PRC, self.CHECKSUM, src, dest= struct.unpack('B B H H H B B H 4s 4s', self.raw_data[:20])
+        VER_IHL, DS_ECN, self.TOTALEN, self.IDENT, FLAG_OFFSET, self.TTL, PRC, self.CHECKSUM, src, dest= struct.unpack('! B B H H H B B H 4s 4s', self.raw_data[:20])
         self.VER, self.IHL = self.get_ver_IHL(VER_IHL)
         self.DS, self.ECN = self.get_DS_ECN(DS_ECN)
         self.FLAG, self.OFFSET = self.get_FG_OFF(FLAG_OFFSET)
@@ -36,7 +37,6 @@ class IP(object):
     def print_result(self):
         print('Destination: {}, Source: {}, Protocol: {}'.format(self.DEST_IP4, self.SRC_IP4, self.PROTOCOL))
 
-        
     def get_ver_IHL(self, VER_IHL):
         IHL = VER_IHL & 0x0F
         VER = VER_IHL >> 4
@@ -52,6 +52,24 @@ class IP(object):
         FLAG = FLAG_OFFSET >> 13
         return (FLAG, OFFSET)
     
+    def get_Info(self):
+        info = {}
+        info['version'] = '[4 bit]' + str(self.VER)
+        info['Internet head lenth'] = '[4 bit]' + str(self.IHL)
+        info['Diff_service'] = '[6 bit]' + str(self.DS)
+        info['ECN'] = '[2 bit]' + str(self.ECN)
+        info['total_length'] = '[16 bit]' + str(self.TOTALEN)
+        info['identification'] = '[16 bit]' + str(self.IDENT)
+        info['flags'] = '[3 bit]' + str(self.FLAG)
+        info['offset'] = '[13 bit]' + str(self.OFFSET)
+        info['TTL'] = '[8 bit]' + str(self.TTL)
+        info['IPv4_protocol'] = '[8 bit]' + str(self.PROTOCOL)
+        info['checksum'] = '[16 bit]' + str(self.CHECKSUM)
+        info['SRC_IPv4'] = '[32 bit]' + str(self.SRC_IP4)
+        info['DEST_IPv4'] = '[32 bit]' + str(self.DEST_IP4)
+
+        return (info, 'IP')
+
     def deal_data(self):
         if self.PROTOCOL == 'ICMP':
             '''互联网控制消息协议'''

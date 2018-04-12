@@ -11,7 +11,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_window(object):
 
     def setupUi(self, window):
-        print("__set_win__")
         window.setObjectName("window")
         window.resize(600, 600)
         self.centralwidget = QtWidgets.QWidget(window)
@@ -102,6 +101,21 @@ class Ui_window(object):
 "\n"
 "color: rgb(194, 124, 123);\n"
 "}\n"
+"QTableWidget{\n"
+"alternate-background-color: rgb(126, 152, 174);\n"
+# "background-color: rgb(148, 137, 169);\n"
+"color: rgb(250, 250, 250);\n"
+"}\n"
+"QTableWidget::item:!alternate{\n"
+# "alternate-background-color: rgb(126, 152, 174);\n"
+"background-color: rgb(148, 137, 169);\n"
+"color: rgb(250, 250, 250);\n"
+"}\n"
+"QScrollBar{\n"
+"background:rgb(73, 74, 90,50);\n"
+"height:10px;"
+"}\n"
+"QScrollBar::handle{background:lightgray; border:2px solid transparent; border-radius:5px;}"
 "")
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
@@ -174,9 +188,7 @@ class Ui_window(object):
         self.lineEdit.textChanged['QString'].connect(window.isLineEditEmpty)
         self.pbt.clicked.connect(window.capt)
         self.groubbtn.buttonClicked['int'].connect(window.showPage)
-        # self.pac_pbt.clicked.connect(window.showPage)
-        # self.app_pbt.clicked.connect(window.showPage)
-        # self.map_pbt.clicked.connect(window.showPage)
+        self.tableWidget.itemClicked.connect(window.treeShow)
         QtCore.QMetaObject.connectSlotsByName(window)
         
     def retranslateUi(self, window):

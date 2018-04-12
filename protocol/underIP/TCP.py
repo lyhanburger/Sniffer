@@ -5,6 +5,7 @@ sys.path.append("...")
 from common.logcmd import printINFO, printWARN
 
 define_FLAGS={0:'URG',1:'ACK',2:'PSH', 3:'RST', 4:'SYN', 5:'FIN'}
+
 class TCP(object):
     """docstring for TCP"""
     def __init__(self, data):
@@ -43,6 +44,21 @@ class TCP(object):
         for item in numl:
             flag.append(define_FLAGS[item])
         return flag 
+
+    def get_Info(self):
+        info = {}
+        info['SRC_PORT'] = '[16 bit]' + str(self.SRC_PORT)
+        info['DEST_PORT'] = '[16 bit]' + str(self.DEST_PORT)
+        info['SEQ'] = '[32 bit]' + str(self.SEQ)
+        info['ACK'] = '[32 bit]' + str(self.ACK)
+        info['TCP_head_length'] = '[4 bit]' + str(self.THL)
+        info['reserve'] = '[6 bit]' + str(self.R)
+        info['FLAG'] = '[6 bit]' + str(self.FLAG)
+        info['window_size'] = '[16 bit]' +str(self.WIN_SIZE)
+        info['checksum'] = '[16 bit]' +str(self.CHECKSUM)
+        info['urgent_point'] = '[16 bit]' + str(self.URGENR_PTR)
+        info['option'] = '[? bit]' +str(self.OPTION)
+        return(info, 'TCP')
 
     def up_layer(self, PORT):
         if PORT == 20 or PORT == 21:

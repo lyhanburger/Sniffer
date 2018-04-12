@@ -14,7 +14,7 @@ class ICMP(object):
 
     def analysis(self):
         '''Echo Reply : return ID, sequence'''
-        itype, code, self.checksum, self.ID, self.SEQUEN = struct.unpack('! B B H H H', self.raw_data[:8])
+        itype, code, self.CHECKSUM, self.ID, self.SEQUEN = struct.unpack('! B B H H H', self.raw_data[:8])
         self.TYPEINFO = self.get_type(itype, code)
         self.other_data = self.raw_data[8:]
 
@@ -37,6 +37,14 @@ class ICMP(object):
             printWARN("ERROR")
         else:
             print('type: {}'.format(self.TYPEINFO.replace("_"," ")) )
+
+    def get_Info(self):
+        info = {}
+        info['ICMP_type'] = '[16 bit]' + str(self.TYPEINFO)
+        info['checksum'] = '[16 bit]' + str(self.CHECKSUM)
+        info['ID'] = '[16 bit]' + str(self.ID)
+        info['sequence'] = '[16 bit]' + str(self.SEQUEN)
+        return(info, 'ICMP')
 
 
 

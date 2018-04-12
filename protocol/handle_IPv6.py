@@ -2,7 +2,7 @@ import struct
 from .underIP import *
 sys.path.append("..")
 from common import get_IP6_addr, IP_PROTOCOL
-def get_info(ver_TC_QOS):
+def get_ver_TC_QOS(ver_TC_QOS):
     ver = ver_TC_QOS >> 28
     qos = ver_TC_QOS & 0x000fffff
     tc = (ver_TC_QOS >> 20) & 0x000000ff
@@ -16,18 +16,30 @@ class IPv6(object):
 
     def __analysis(self):
         ver_TC_QOS, self.PAYLOAD_LEN, nexthead, self.HOPLIMIT, src, dest= struct.unpack('! I H B B 16s 16s', self.raw_data[:40])
-        self.VER, self.TC, self.Qos = get_info(ver_TC_QOS)
+        self.VER, self.TC, self.Qos = get_ver_TC_QOS(ver_TC_QOS)
         try:
             self.NEXTHEAD = IP_PROTOCOL[nexthead]
         except:
             self.NEXTHEAD = nexthead
 
-        self.SRC_IP6 = get_IP6_addr(src)
-        self.DEST_IP6 = get_IP6_addr(dest)
+        self.SRC_IPv6 = get_IP6_addr(src)
+        self.DEST_IPv6 = get_IP6_addr(dest)
         self.other_data = self.raw_data[40:]
 
     def print_result(self):
-        print('IP6 --- Destination: {}, Source: {}, NextHead: {}'.format(self.DEST_IP6, self.SRC_IP6, self.NEXTHEAD))
+        print('IP6 --- Destination: {}, Source: {}, NextHead: {}'.format(self.DEST_IPv6, self.SRC_IPv6, self.NEXTHEAD))
+
+    def get_Info(self):
+        info = {}
+        info['version'] = '[4 bit]' + str(self.VER)
+        info['Diff_service'] = '[8 bit]' + str(self.TC)
+        info['Qos'] = '[20 bit]' + str(self.Qos)
+        info['payload'] = '[16 bit]' + str(self.PAYLOAD_LEN)
+        info['IPv6_next_head'] = '[8 bit]' + str(self.NEXTHEAD)
+        info['hop_limit'] = '[8 bit]' + str(self.HOPLIMIT)
+        info['SRC_IPv6'] = '[128 bit]' + str(self.SRC_IPv6 )
+        info['DEST_IPv6'] = '[128 bit]' + str(self.DEST_IPv6)
+        return (info, 'IPv6')
 
     def deal_data(self):
         if self.NEXTHEAD == 'IPv6-ICMP':

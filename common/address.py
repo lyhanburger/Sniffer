@@ -13,3 +13,9 @@ def get_IP6_addr(ip6_raw):
     byte_str = map('{:x}'.format, ip6_raw)
     Ip_addr = ':'.join(byte_str)
     return Ip_addr
+
+def get_raw_data(byte_str):
+    string = ''
+    for x in bytes(byte_str):
+        string = string + '{:x}'.format(x) +" "
+    return string
