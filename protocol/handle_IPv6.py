@@ -41,6 +41,9 @@ class IPv6(object):
         info['DEST_IPv6'] = '[128 bit]' + str(self.DEST_IPv6)
         return (info, 'IPv6')
 
+    def get_IP(self):
+        return None
+
     def deal_data(self):
         if self.NEXTHEAD == 'IPv6-ICMP':
             '''互联网控制消息协议'''
@@ -53,21 +56,21 @@ class IPv6(object):
             return UDP(self.other_data)
         else:
             ''' 启用了 扩展 头部 '''
-            for i in range(40, len(self.raw_data), 20):
-                self.other_data = self.raw_data[40+i:]
-                nexthead = truct.unpack('! B ', self.raw_data[i:i+20])
+            l = len(self.other_data)
+            for i in range(0, l, 20):
+                nexthead = struct.unpack('! B ', self.other_data[i:i+1])
                 try:
                     NEXTHEAD = IP_PROTOCOL[nexthead]
                 except:
                     NEXTHEAD = nexthead
                 if NEXTHEAD == 'TCP':
-                    return TCP(self.other_data)
+                    return TCP(self.other_data[i+20:])
                 elif NEXTHEAD == 'UDP':
-                    return UDP(self.other_data)
+                    return UDP(self.other_data[i+20:])
                 elif NEXTHEAD == 'IPv6-ICMP':
-                    return IPv6_ICMP(self.other_data)
+                    return IPv6_ICMP(self.other_data[i+20:])
 
                 else:
-                    print("扩展头部: "+ NEXTHEAD)
+                    print("扩展头部: ", NEXTHEAD)
             
         

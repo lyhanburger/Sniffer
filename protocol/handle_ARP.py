@@ -1,6 +1,6 @@
 import sys
 import struct
-sys.path.append("...")
+sys.path.append("..")
 from common.static import FRAME_TYPE, ARP_OP, ARP_HARDWARE
 from common.logcmd import printWARN
 from common.address import get_mac_addr, get_IP4_addr
@@ -35,6 +35,9 @@ class ARP(object):
         print('OPT: {}, SRC_MAC: {}, SRC_IP: {}, DEST_MAC: {}, DEST_IP: {}'.format(self.OPT, self.SRC_MAC, self.SRC_IP, self.DEST_MAC, self.DEST_IP))
     def deal_data(self):
         return None
+
+    def get_IP(self):
+        return (self.SRC_IP, self.DEST_IP)
 
     def get_Info(self):
         info = {}

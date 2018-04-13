@@ -160,6 +160,12 @@ class Ui_window(object):
         self.chart_widget = QtWidgets.QWidget(self.page_2)
         self.chart_widget.setGeometry(QtCore.QRect(40, 40, 381, 501))
         self.chart_widget.setObjectName("chart_widget")
+
+        self.verticalLayout1 = QtWidgets.QVBoxLayout(self.chart_widget)
+        self.verticalLayout1.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout1.setSpacing(0)
+        self.verticalLayout1.setObjectName("verticalLayout1")
+
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
@@ -183,7 +189,6 @@ class Ui_window(object):
         self.retranslateUi(window)
         self.stackedWidget.setCurrentIndex(0)
         self.pbt.setEnabled(False)
-
 
         self.lineEdit.textChanged['QString'].connect(window.isLineEditEmpty)
         self.pbt.clicked.connect(window.capt)

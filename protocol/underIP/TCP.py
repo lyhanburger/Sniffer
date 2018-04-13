@@ -57,7 +57,7 @@ class TCP(object):
         info['window_size'] = '[16 bit]' +str(self.WIN_SIZE)
         info['checksum'] = '[16 bit]' +str(self.CHECKSUM)
         info['urgent_point'] = '[16 bit]' + str(self.URGENR_PTR)
-        info['option'] = '[? bit]' +str(self.OPTION)
+        info['option'] = '[16 bit]' +str(self.OPTION)
         return(info, 'TCP')
 
     def up_layer(self, PORT):

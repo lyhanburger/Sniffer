@@ -51,6 +51,9 @@ class IP(object):
         OFFSET = FLAG_OFFSET & 0x1F
         FLAG = FLAG_OFFSET >> 13
         return (FLAG, OFFSET)
+
+    def get_IP(self):
+        return (str(self.SRC_IP4), str(self.DEST_IP4))
     
     def get_Info(self):
         info = {}
