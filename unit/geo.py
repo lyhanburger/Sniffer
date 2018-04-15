@@ -43,7 +43,7 @@ def get_img(IP_list_tuple, myIP):
         x.append(x1)
         y.append(y1)
     printWARN("*"*100)
-    mp.save_png("curmap.png")
+    mp.save_png("unit/curmap.png")
     plt.figure()
     ax = plt.subplot(111)
     plt.xticks([])
@@ -55,7 +55,7 @@ def get_img(IP_list_tuple, myIP):
     plt.tight_layout()
     ax.imshow(mp.img)
     ax.plot(x, y, 'or')
-    plt.savefig("plot.png")
+    plt.savefig("unit/plot.png")
     
 
 class getIMG(QThread):

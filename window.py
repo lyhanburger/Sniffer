@@ -160,7 +160,7 @@ class WINGUI(QMainWindow):
 
     def show_png(self):
         self.set_Png = True
-        pix = QPixmap("plot.png")
+        pix = QPixmap("unit/plot.png")
         pix = pix.scaled(QSize(341, 461), Qt.KeepAspectRatio)
         self.ui.map_label.setPixmap(pix)
         for i in range(100):

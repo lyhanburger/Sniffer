@@ -1,30 +1,65 @@
-# BUPT计算机网络课程设计—网络流量嗅探器
+# Sniffer
 
-## 任务描述
+My homework sniffer using pypcap, pyqt5, smopy, matplotlib 
 
-​        功能强悍的网络嗅探器有很多，之前了解到冰人借助网卡混杂模式进行流量嗅探捕捉了很多人的隐私信息，感觉流量嗅探远不止我们之前使用的Wireshark那么单纯。
-
-​        本次想展开的网络流量嗅探器，准确的来说应该是**原始套接字嗅探器**。
+⚠️ maybe compatible in macOS
 
 
 
+## support
 
-## 框架
+You could use pip3 to config your environment
 
-还没想好….
-
-
-
-## 实现
-
-协议太多了，我们就选几个常见的实现，其他的能识别
+```shell
+pip3 install -r requirements.txt
+```
 
 
 
-## 环境及依赖包
+## to use
 
-本次作业采用开发环境：python3 
+enter sniffer , in your iterm
 
-依赖包：
+```shell
+sudo python3 window.py
+```
 
-pypcap
+It need the root authority
+
+
+
+## sample
+
+You may use 'arp -a' to get your NIC information
+
+```shell
+arp -a
+```
+
+
+
+**input your NIC name**
+
+![01](pic_sample/01.png)
+
+
+
+**capture the packages**
+
+![02](pic_sample/02.png)
+
+
+
+**you could see some information**
+
+![03](pic_sample/03.png)
+
+
+
+**check the flow **
+
+![04](pic_sample/04.png)
+
+**get IP geo. information**
+
+![05](pic_sample/05.png)

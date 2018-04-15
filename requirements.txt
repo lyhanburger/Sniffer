@@ -1,0 +1,7 @@
+matplotlib==2.2.0
+pypcap==1.2.0
+PyQt5==5.10.1
+PyQtChart==5.10.1
+sip==4.19.8
+smopy==0.0.6
+
