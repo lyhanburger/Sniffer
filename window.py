@@ -152,14 +152,13 @@ class WINGUI(QMainWindow):
         
         if str(self.myIP) in IP_tuple:
             self.IP_list_tuple.append(IP_tuple)
-            printWARN(str(len(self.IP_list_tuple)))
+            printWARN("IP_tuple"+str(len(self.IP_list_tuple)))
             if len(self.IP_list_tuple) >= 100 and self.set_Png:
                 self.set_Png == False  
                 # self.Thread_cap.stop()
                 self.Image.setIP(self.IP_list_tuple[:100], self.myIP)
 
     def show_png(self):
-        printTEST("set pic")
         self.set_Png = True
         pix = QPixmap("plot.png")
         pix = pix.scaled(QSize(341, 461), Qt.KeepAspectRatio)
@@ -176,19 +175,16 @@ class WINGUI(QMainWindow):
         # lastpointtime = 0
         # size = eltime - lastpointtime
         size = 1
+        # printWARN(str(self.port))
         oldPoints = self.m_series.pointsVector()
         points = []
-
         for i in range(1,len(oldPoints)): 
             points.append(QPointF(i-size ,oldPoints[i].y()))
-
         sizePoints = len(points)
         for k in range(size): 
             points.append(QPointF(k+sizePoints, self.port));  
         self.m_series.replace(points) 
-      
         self.port = 0
-
         self.timer.start(800)
 
 

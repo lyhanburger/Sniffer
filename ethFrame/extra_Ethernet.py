@@ -15,7 +15,7 @@ class extra_Ethernet:
         try:
             return FRAME_TYPE[prototype]
         except:
-            printWARN("extra_Ethernet<get_FrameType> not find "+prototype)
+            printWARN("extra_Ethernet<get_FrameType> not find "+str(prototype))
             return str(prototype)
 
         

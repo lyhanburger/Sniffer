@@ -86,19 +86,26 @@ class cap_package(QThread):
                     self.signal_portstr.emit(port)
                 if not src_dest_ip == None :
                     self.signal_iptuple.emit(src_dest_ip)
-                time.sleep(1)
                 self.signal_packdict.emit(Info)
+                time.sleep(1)
             elif self.status == 1:
                 '''flow'''
+                if not src_dest_ip == None :
+                    self.signal_iptuple.emit(src_dest_ip)
                 if not port == None :
                     self.signal_portstr.emit(port)
+                self.signal_packdict.emit(Info)
             else:
                 if self.is_stop:
                     break
+                if not port == None :
+                    self.signal_portstr.emit(port)
+                    
+                self.signal_packdict.emit(Info)
                 if src_dest_ip == None:
                     continue
-                time.sleep(0.1)
                 self.signal_iptuple.emit(src_dest_ip)
+              
            
         
     def setstuid(self, eth_name = None):

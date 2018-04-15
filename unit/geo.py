@@ -34,7 +34,7 @@ def get_img(IP_list_tuple, myIP):
                 XY = get_XY(ip = i)
                 if not XY == None:
                     IP_xy.append(XY)
- 
+    printWARN("+"*100)
     mp = smopy.Map((min(IP_xy)[0], min(IP_xy)[1], max(IP_xy)[0], max(IP_xy)[1]),z=5)
     x = []
     y = []
@@ -42,6 +42,7 @@ def get_img(IP_list_tuple, myIP):
         x1, y1 = mp.to_pixels(xy[0], xy[1])
         x.append(x1)
         y.append(y1)
+    printWARN("*"*100)
     mp.save_png("curmap.png")
     plt.figure()
     ax = plt.subplot(111)
@@ -53,7 +54,7 @@ def get_img(IP_list_tuple, myIP):
     plt.axis('off')
     plt.tight_layout()
     ax.imshow(mp.img)
-    ax.plot(x, y, 'or', ms=10, mew=2)
+    ax.plot(x, y, 'or')
     plt.savefig("plot.png")
     
 
